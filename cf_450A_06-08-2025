@@ -1,0 +1,27 @@
+import java.util.*;
+import java.lang.Math;
+ 
+public class Main {
+ 
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+ 
+        int n = scanner.nextInt();
+        int m = scanner.nextInt();
+ 
+        int maxRoundsNeeded = 0;
+        int lastChild = -1;
+ 
+        for (int i = 1; i <= n; i++) {
+            int candiesWanted = scanner.nextInt();
+            int rounds = (int) Math.ceil((double) candiesWanted / m);
+ 
+            if (rounds >= maxRoundsNeeded) {
+                maxRoundsNeeded = rounds;
+                lastChild = i;
+            }
+        }
+ 
+        System.out.println(lastChild);
+    }
+}
