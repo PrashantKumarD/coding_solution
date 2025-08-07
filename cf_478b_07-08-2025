@@ -1,0 +1,25 @@
+import java.util.*;
+ 
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        long n = sc.nextLong();
+        long m = sc.nextLong();
+        sc.close();
+ 
+        long kmax;
+        long maxGroupSize = n - m + 1;
+        kmax = maxGroupSize * (maxGroupSize - 1) / 2;
+ 
+        long kmin;
+        long baseSize = n / m;
+        long remainderTeams = n % m;
+        long baseTeams = m - remainderTeams;
+ 
+        long kminFromRemainder = remainderTeams * (baseSize + 1) * baseSize / 2;
+        long kminFromBase = baseTeams * baseSize * (baseSize - 1) / 2;
+        kmin = kminFromRemainder + kminFromBase;
+ 
+        System.out.println(kmin + " " + kmax);
+    }
+}
