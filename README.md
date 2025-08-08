@@ -1,11 +1,23 @@
-📚 Daily Coding Solutions – LeetCode & Codeforces
-This repository is my daily log of problem-solving practice. Every day, I share:
+# 📚 Daily Coding Solutions – LeetCode & Codeforces
 
-LeetCode Daily Challenge Solutions 🧩 – clean, well-structured, and explained.
+This repository is my daily log of problem-solving practice.  
+Every day, I share:
 
-One Codeforces Problem Solution ⚡ – focusing on logic building and competitive programming skills.
+- 🧩 **LeetCode Daily Challenge Solutions** – clean, optimized, and explained.  
+- ⚡ **One Codeforces Problem Solution** – focusing on logic building and competitive programming skills.
 
-The goal is simple: consistent practice, optimized solutions, and learning through problem diversity.
-All solutions are written with readability in mind, and most include intuitive approaches before the optimized version.
+## 🚀 Purpose
+- Build and maintain a consistent daily coding habit.
+- Improve problem-solving and optimization skills.
+- Provide clear, reusable solutions for reference.
 
-🚀 Perfect for anyone who wants to follow a structured daily problem-solving routine or explore different approaches to coding challenges.
+## 🛠 Tech Stack
+- **Java** (primary)
+- Occasionally Python or C++ for variety.
+
+## 🌟 How to Use
+Browse the folders, pick a problem, and explore the solution.  
+Feel free to ⭐ star the repo or fork it to try the problems yourself!
+
+---
+*Consistency beats intensity — one problem a day keeps stagnation away!*
