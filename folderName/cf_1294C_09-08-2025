@@ -1,0 +1,30 @@
+import java.util.*;
+ 
+public class Main {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        int t=scan.nextInt();
+        while(t-->0){
+            long n = scan.nextLong();
+            boolean state = false;
+            for (long i = 2; i * i <= n; i++) {
+                if (n % i == 0) {
+                    long a = i;
+                    long remainingN = n / a;
+                    for (long j = i + 1; j * j < remainingN; j++) {
+                        if (remainingN % j == 0 && !state) {
+                            long b = j;
+                            long c = remainingN / b;
+                            System.out.println("YES");
+                            System.out.println(a + " " + b + " " + c);
+                            state = true;
+ 
+ 
+                        }
+                    }
+                }
+            }
+            if(!state) System.out.println("NO");
+        }
+    }
+}
