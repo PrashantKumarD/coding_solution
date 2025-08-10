@@ -1,0 +1,26 @@
+class Solution {
+    public boolean reorderedPowerOf2(int n) {
+        int[] freq1 = freqgen(n);
+        int val = 0;
+        for(int i=0;i<31;i++){
+            val = (int)(Math.pow(2,i));
+            int[] freq2 = freqgen(val);
+            if(check(freq1,freq2)) return true; 
+        }
+        return false;
+    }
+    private boolean check(int[] freq1,int[] freq2){
+        for(int i=0;i<10;i++){
+            if(freq1[i]!=freq2[i]) return false;
+        }
+        return true;
+    }
+    private int[] freqgen(int n){
+        int[] arr=new int[10];
+        while(n!=0){
+            arr[n%10]++;
+            n=n/10;
+        }
+        return arr;
+    }
+}
