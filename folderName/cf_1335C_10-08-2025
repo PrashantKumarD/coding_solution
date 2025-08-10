@@ -1,0 +1,44 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        while (t-- > 0) {
+            int n = sc.nextInt();
+            if (n <= 1) {
+                System.out.println(0);
+                if (n == 1) {
+                    sc.nextInt();
+                }
+                continue;
+            }
+
+            Map<Integer, Integer> skillCounts = new HashMap<>();
+            for (int i = 0; i < n; i++) {
+                int skill = sc.nextInt();
+                skillCounts.put(skill, skillCounts.getOrDefault(skill, 0) + 1);
+            }
+
+            int maxFreq = 0;
+            for (int count : skillCounts.values()) {
+                if (count > maxFreq) {
+                    maxFreq = count;
+                }
+            }
+
+            int uniqueSkillsCount = skillCounts.size();
+
+            int result;
+            if (maxFreq > uniqueSkillsCount) {
+                result = uniqueSkillsCount;
+            } else if (maxFreq < uniqueSkillsCount) {
+                result = maxFreq;
+            } else {
+                result = maxFreq - 1;
+            }
+
+            System.out.println(result);
+        }
+    }
+}
