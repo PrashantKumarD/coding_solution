@@ -1,0 +1,17 @@
+class Solution {
+    public int numberOfWays(int n, int x) {
+        long[][] dp = new long[n+1][n+1];
+        for(int i=0;i<=n;i++) Arrays.fill(dp[i],-1);
+        long mod=1000000007;
+        return (int)ways((long)n,x,1,mod,dp);
+    }
+    public long ways(long n,int x,int num,long mod,long[][] dp){
+        if(n==0) return 1;
+        if(n < 0 || num > n) return 0;
+        if(dp[(int)n][num]!=-1) return dp[(int)n][num];
+        long notpick = ways(n,x,num+1,mod,dp);
+        long pick = ways(n-(long)Math.pow(num,x),x,num+1,mod,dp);
+
+        return dp[(int)n][num]=(notpick+pick)%mod;
+    }
+}
