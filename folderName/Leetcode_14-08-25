@@ -1,0 +1,20 @@
+class Solution {
+    public String largestGoodInteger(String num) {
+        StringBuilder stb=new StringBuilder();
+        int a=-1; int index=0;
+        while(index+2<num.length()){
+            if(num.charAt(index)==num.charAt(index+2) && num.charAt(index+2)==num.charAt(index+1)){
+                if(a < (int)(num.charAt(index)-'0')) a = (int)(num.charAt(index)-'0');
+            }
+            index++;
+        }
+        if(a>-1){ 
+            stb.append(a);
+            stb.append(a);
+            stb.append(a);
+        }
+        return stb.toString();
+
+        
+    }
+}
