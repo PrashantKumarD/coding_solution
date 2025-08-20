@@ -1,0 +1,23 @@
+class Solution {
+    public long zeroFilledSubarray(int[] nums) {
+        long sum =0;
+        long count=0;
+        boolean calculatedAll = false;
+        for(int i : nums){
+            if(i==0){
+                calculatedAll = false;
+                count++;
+            }
+            else{
+                calculatedAll = true;
+                sum += count*(count+1)/2;
+                count = 0;
+            }
+        }
+        if(!calculatedAll){
+            sum += count*(count+1)/2;
+        }
+        return sum;
+        
+    }
+}
