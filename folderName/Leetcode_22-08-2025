@@ -1,0 +1,48 @@
+class Solution {
+    public int minimumArea(int[][] grid) {
+        int n=grid.length; int m=grid[0].length;
+        int verticalfirst = 0; int verticallast = 0;
+        int horizontalfirst = 0; int horizontallast = 0;
+        for(int i=0;i<n;i++){
+            if(verticalsearch(i,grid)){
+                verticalfirst=i;
+                break;
+            }
+        }
+        for(int i=n-1;i>=0;i--){
+            if(verticalsearch(i,grid)){
+                verticallast=i;
+                break;
+            }
+        }
+        for(int j=0;j<m;j++){
+            if(horizontalsearch(j,grid)){
+                horizontalfirst=j;
+                break;
+            }
+        }
+        for(int j=m-1;j>=0;j--){
+            if(horizontalsearch(j,grid)){
+                horizontallast=j;
+                break;
+            }
+        }
+        return (horizontallast-horizontalfirst+1)*(verticallast-verticalfirst+1);
+
+        
+    }
+    private boolean verticalsearch(int row,int[][] grid){
+        int clen = grid[0].length;
+        for(int i=0;i<clen;i++){
+            if(grid[row][i]==1) return true;
+        }
+        return false;
+    }
+    private boolean horizontalsearch(int col,int[][] grid){
+        int rlen = grid.length;
+        for(int i=0;i<rlen;i++){
+            if(grid[i][col]==1) return true;
+        }
+        return false;
+    }
+}
