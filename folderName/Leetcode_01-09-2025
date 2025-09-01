@@ -1,0 +1,28 @@
+class pair{
+    double num;
+    double den;
+    public pair(double num,double den){
+        this.num = num;
+        this.den = den;
+    }
+
+}
+class Solution {
+    public double maxAverageRatio(int[][] classes, int extraStudents) {
+        PriorityQueue<pair> pq = new PriorityQueue<>((a,b)->Double.compare((((b.num+1)/(b.den+1))-(b.num/b.den)),
+        (((a.num+1)/(a.den+1))-(a.num/a.den))));
+        for(int i=0;i<classes.length;i++){
+            pq.add(new pair((double)classes[i][0],(double)classes[i][1]));
+        }
+        while(extraStudents-->0){
+            pair p = pq.poll();
+            pq.add(new pair(p.num+1,p.den+1));
+        }
+        double sum = 0;
+        while(!pq.isEmpty()){
+            pair p = pq.poll();
+            sum += p.num/p.den;
+        }
+        return sum/classes.length;
+    }
+}
