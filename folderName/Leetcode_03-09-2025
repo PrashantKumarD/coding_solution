@@ -1,0 +1,35 @@
+class Solution {
+    public int numberOfPairs(int[][] points) {
+        int n = points.length;
+        int counts = 0;
+        Arrays.sort(points, (a, b) -> {
+            if(a[0]==b[0]){
+                return a[1]-b[1];
+            }
+            else{
+                return b[0]-a[0];
+            }
+        });
+        System.out.println(Arrays.toString(points[1]));
+        for(int i=0;i<n;i++){
+            for(int j=i+1;j<n;j++){
+                if(points[j][0]<=points[i][0]&&points[j][1]>=points[i][1]){
+                    boolean f=true;
+                    for(int z=i;z<=j;z++){
+                        if(z==i || z==j) continue;
+                        int a = points[z][0];
+                        int b = points[z][1];
+                        if(points[j][1]>=b&&b>=points[i][1]&&points[j][0]<=a&&a<=points[i][0]){
+                            f= false;
+                            break;
+                        }
+                    }
+                    if(f) {
+                        System.out.println(points[i][0]+" "+points[i][1]+" "+points[j][0]+" "+points[j][1]);
+                        counts++;}
+                }
+            }
+        }
+        return counts;
+    }
+}
