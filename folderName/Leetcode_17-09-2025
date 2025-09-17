@@ -1,0 +1,59 @@
+class pair{
+    String n;
+    int r;
+    public pair(String n,int r){
+        this.n=n;
+        this.r=r;
+    }
+}
+class FoodRatings {
+    Map<String,TreeSet<pair>> map;
+    Map<String,String> link;
+    Map<String,pair> foodmap;
+    public FoodRatings(String[] foods, String[] cuisines, int[] ratings) {
+        map = new HashMap<>();
+        link = new HashMap<>();
+        foodmap = new HashMap<>();
+        for(int i=0;i<foods.length;i++){
+            String c = cuisines[i]; String f = foods[i]; int ra = ratings[i];
+            pair p = new pair(f,ra);
+            foodmap.put(f,p);
+            link.put(f,c);
+            if(!map.containsKey(c)){
+                map.put(c,new TreeSet<pair>(
+                    (a,b)->{
+                        if(a.r != b.r){
+                            return b.r-a.r;
+                        }
+                        else return a.n.compareTo(b.n);
+                    }
+                ));
+                map.get(c).add(p);
+            }
+            else{
+                map.get(c).add(p);
+            }
+        }
+    }
+    
+    public void changeRating(String food, int newRating) {
+        String f = food; int ra = newRating;
+        pair p = foodmap.get(food);
+        String c = link.get(f);
+        map.get(c).remove(p);
+        pair q = new pair(f,ra);
+        map.get(c).add(q);
+        foodmap.put(food,q);
+    }
+    
+    public String highestRated(String cuisine) {
+        return map.get(cuisine).first().n;
+    }
+}
+
+/**
+ * Your FoodRatings object will be instantiated and called as such:
+ * FoodRatings obj = new FoodRatings(foods, cuisines, ratings);
+ * obj.changeRating(food,newRating);
+ * String param_2 = obj.highestRated(cuisine);
+ */
