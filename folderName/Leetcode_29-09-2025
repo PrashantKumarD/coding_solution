@@ -1,0 +1,19 @@
+class Solution {
+    public int minScoreTriangulation(int[] values) {
+        int n = values.length;
+        int[][] dp = new int[n+1][n+1];
+        for(int i=0;i<=n;i++){
+            Arrays.fill(dp[i],-1);
+        }
+        return minselect(values,0,values.length-1,dp);
+    }
+    public int minselect(int[] values,int i,int j,int[][] dp){
+        if(j-i<2) return 0;
+        if(dp[i][j]!=-1) return dp[i][j];
+        int cost = Integer.MAX_VALUE;
+        for(int a=i+1;a<j;a++){
+           cost = Math.min(cost,minselect(values,i,a,dp)+values[i]*values[j]*values[a]+minselect(values,a,j,dp));
+        }
+        return dp[i][j]=cost;
+    }
+}
