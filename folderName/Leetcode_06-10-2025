@@ -1,0 +1,36 @@
+class pair{
+    int row;
+    int col;
+    int dist;
+    public pair(int row,int col,int dist){
+        this.row=row;
+        this.col=col;
+        this.dist=dist;
+    }
+}
+class Solution {
+    public int swimInWater(int[][] grid) {
+        int[][] way = {{0,1},{1,0},{-1,0},{0,-1}};
+        PriorityQueue<pair> pq = new PriorityQueue<>((a,b)->(a.dist-b.dist));
+        int[][] visited = new int[grid.length][grid[0].length];
+        pq.add(new pair(0,0,grid[0][0]));
+        visited[0][0]=1;
+        while(!pq.isEmpty()){
+            pair p = pq.poll();
+            int r = p.row;
+            int c = p.col;
+            int d = p.dist;
+            for(int i=0;i<4;i++){
+                int newr = r+way[i][0];
+                int newc = c+way[i][1];
+                if(newr<0 || newr>=grid.length || newc<0 || newc>=grid[0].length) continue;
+                if(visited[newr][newc]==1) continue;
+                visited[newr][newc]=1;
+                int newd = Math.max(d,grid[newr][newc]);
+                if(newr==grid.length-1&&newc==grid[0].length-1) return newd;
+                pq.add(new pair(newr,newc,newd));
+            }
+        } 
+        return 0; 
+    }
+}
