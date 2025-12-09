@@ -1,0 +1,30 @@
+3583-> Count Special Triplets 
+
+class Solution {
+    public int specialTriplets(int[] nums) {
+        int[] prev=new int[100001];
+        int[] arr=new int[100001];
+        for(int i : nums){
+            arr[i]++;
+        }
+        long count=0;
+        int mod=1000000007;
+        for(int i=0;i<nums.length;i++){
+            long p = 0; long s = 0;
+            int v = nums[i];
+            if(v!=0&&2*v<=100000){
+                p = prev[2*v];
+                s = arr[2*v]-p;
+            }
+            else if(v==0){
+                p = prev[2*v];
+                s = Math.max(0,arr[2*v]-p-1);
+            
+            }
+            count = (count+(p*s)%mod)%mod;
+            prev[nums[i]]++;
+        }
+        return (int)(count%mod);
+
+    }
+}
